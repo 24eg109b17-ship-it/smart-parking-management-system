@@ -1,0 +1,24 @@
+services:
+  backend:
+    build: .
+    environment:
+      JWT_SECRET: ${JWT_SECRET:?Set JWT_SECRET in .env}
+      ADMIN_EMAIL: ${ADMIN_EMAIL:?Set ADMIN_EMAIL in .env}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:?Set ADMIN_PASSWORD in .env}
+      CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS:-http://localhost:5173}
+      DEMO_ENABLED: ${DEMO_ENABLED:-false}
+      DB_URL: jdbc:h2:file:/app/data/parking;DB_CLOSE_ON_EXIT=FALSE
+    ports:
+      - "8080:8080"
+    volumes:
+      - parking_data:/app/data
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+volumes:
+  parking_data:

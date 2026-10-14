@@ -1,0 +1,18 @@
+# Local secrets and runtime data
+.env
+.env.*
+!.env.example
+**/data/
+**/*.db
+*.log
+# Dependencies and generated output
+**/node_modules/
+**/target/
+**/dist/
+# Editors and operating systems
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+# Local verification artifacts
+.artifacts/

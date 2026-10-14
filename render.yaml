@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: smart-parking-campus
+    runtime: static
+    buildCommand: cd frontend && npm ci && npm run build
+    staticPublishPath: frontend/dist
+    envVars:
+      - key: NODE_VERSION
+        value: "24"
+      - key: VITE_API_BASE_URL
+        sync: false
+      - key: VITE_DEMO_ENABLED
+        value: "false"
